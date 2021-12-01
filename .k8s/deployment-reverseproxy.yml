@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-reverseproxy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-reverseproxy
+  template:
+    metadata:
+      labels:
+        app: udagram-reverseproxy
+    spec:
+      containers:
+        - name: udagram-reverseproxy
+          image: digitalphoenixx/udagram-reverseproxy:v2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
